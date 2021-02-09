@@ -1,9 +1,9 @@
-import { Suspense } from "react"
 import Layout from "app/layouts/Layout"
-import { Link, useRouter, useQuery, useMutation, useParam, BlitzPage } from "blitz"
-import getQuestion from "app/questions/queries/getQuestion"
-import updateQuestion from "app/questions/mutations/updateQuestion"
 import QuestionForm from "app/questions/components/QuestionForm"
+import updateQuestion from "app/questions/mutations/updateQuestion"
+import getQuestion from "app/questions/queries/getQuestion"
+import { BlitzPage, Link, useMutation, useParam, useQuery, useRouter } from "blitz"
+import { Suspense } from "react"
 
 export const EditQuestion = () => {
   const router = useRouter()
@@ -22,7 +22,7 @@ export const EditQuestion = () => {
           try {
             const updated = await updateQuestionMutation({
               where: { id: question.id },
-              data: { name: "MyNewName" },
+              data: { text: "Do you really love Blitz?" },
             })
             await setQueryData(updated)
             alert("Success!" + JSON.stringify(updated))

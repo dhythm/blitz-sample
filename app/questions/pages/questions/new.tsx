@@ -1,7 +1,7 @@
 import Layout from "app/layouts/Layout"
-import { Link, useRouter, useMutation, BlitzPage } from "blitz"
-import createQuestion from "app/questions/mutations/createQuestion"
 import QuestionForm from "app/questions/components/QuestionForm"
+import createQuestion from "app/questions/mutations/createQuestion"
+import { BlitzPage, Link, useMutation, useRouter } from "blitz"
 
 const NewQuestionPage: BlitzPage = () => {
   const router = useRouter()
@@ -15,7 +15,9 @@ const NewQuestionPage: BlitzPage = () => {
         initialValues={{}}
         onSubmit={async () => {
           try {
-            const question = await createQuestionMutation({ data: { name: "MyName" } })
+            const question = await createQuestionMutation({
+              data: { text: "Do you love Blitz?", choices: { create: [{ text: "Yes!" }] } },
+            })
             alert("Success!" + JSON.stringify(question))
             router.push(`/questions/${question.id}`)
           } catch (error) {

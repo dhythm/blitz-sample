@@ -1,7 +1,7 @@
-import { Suspense } from "react"
 import Layout from "app/layouts/Layout"
-import { Link, usePaginatedQuery, useRouter, BlitzPage } from "blitz"
 import getQuestions from "app/questions/queries/getQuestions"
+import { BlitzPage, Link, usePaginatedQuery, useRouter } from "blitz"
+import { Suspense } from "react"
 
 const ITEMS_PER_PAGE = 100
 
@@ -23,7 +23,7 @@ export const QuestionsList = () => {
         {questions.map((question) => (
           <li key={question.id}>
             <Link href={`/questions/${question.id}`}>
-              <a>{question.name}</a>
+              <a>{question.text}</a>
             </Link>
           </li>
         ))}
