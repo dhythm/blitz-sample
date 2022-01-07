@@ -1,5 +1,5 @@
 import getCurrentUser from "app/users/queries/getCurrentUser"
-import { render } from "test/utils"
+import { render, screen } from "test/utils"
 import Home from "./index"
 
 // import { useCurrentUser } from "app/core/hooks/useCurrentUser"
@@ -30,6 +30,9 @@ test("renders blitz documentation link", () => {
   })
 
   const { getByText } = render(<Home />)
+
   const linkElement = getByText(/Documentation/i)
+  expect(screen.getByText("User id:")).toBeInTheDocument()
+
   expect(linkElement).toBeInTheDocument()
 })
