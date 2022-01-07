@@ -1,11 +1,24 @@
 import getCurrentUser from "app/users/queries/getCurrentUser"
+import db from "db"
 import { render, screen } from "test/utils"
 import Home from "./index"
 
+jest.mock("blitz", () => ({
+  ...jest.requireActual<any>("blitz"),
+  Routes: {
+    SignupPage: jest.fn().mockReturnValue(""),
+    LoginPage: jest.fn().mockReturnValue(""),
+  },
+}))
+
+// jest.mock("db", () => ({
+//   user: { findFirst: jest.fn() },
+// }))
+// const mockUserFindFirst = db.user.findFirst as jest.MockedFunction<typeof db.user.findFirst>
 // jest.mock("app/core/hooks/useCurrentUser")
 // const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
 jest.mock("app/users/queries/getCurrentUser")
-const mockUseGetUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
+const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
 
 // test.skip("renders blitz documentation link", () => {
 test("renders blitz documentation link", () => {
@@ -20,12 +33,18 @@ test("renders blitz documentation link", () => {
   //   email: "user@email.com",
   //   role: "user",
   // })
-  mockUseGetUser.mockRejectedValue({
+  mockGetCurrentUser.mockRejectedValue({
     id: 1,
     name: "User",
     email: "user@email.com",
     role: "user",
   })
+  // mockUserFindFirst.mockRejectedValue({
+  //   id: 1,
+  //   name: "User",
+  //   email: "user@email.com",
+  //   role: "user",
+  // })
 
   const { getByText } = render(<Home />)
 
