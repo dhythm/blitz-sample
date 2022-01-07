@@ -1,9 +1,9 @@
-import { Suspense } from "react"
-import { Image, Link, BlitzPage, useMutation, Routes } from "blitz"
-import Layout from "app/core/layouts/Layout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
+import Layout from "app/core/layouts/Layout"
+import getCurrentUser from "app/users/queries/getCurrentUser"
+import { BlitzPage, Image, Link, Routes, useMutation, useQuery } from "blitz"
 import logo from "public/logo.png"
+import { Suspense } from "react"
 
 /*
  * This file is just for a pleasant getting started page for your new app.
@@ -11,7 +11,7 @@ import logo from "public/logo.png"
  */
 
 const UserInfo = () => {
-  const currentUser = useCurrentUser()
+  const [currentUser] = useQuery(getCurrentUser, null)
   const [logoutMutation] = useMutation(logout)
 
   if (currentUser) {
