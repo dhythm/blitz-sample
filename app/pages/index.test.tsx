@@ -2,8 +2,6 @@ import getCurrentUser from "app/users/queries/getCurrentUser"
 import { render, screen } from "test/utils"
 import Home from "./index"
 
-// import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-
 // jest.mock("app/core/hooks/useCurrentUser")
 // const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
 jest.mock("app/users/queries/getCurrentUser")
@@ -32,7 +30,7 @@ test("renders blitz documentation link", () => {
   const { getByText } = render(<Home />)
 
   const linkElement = getByText(/Documentation/i)
-  expect(screen.getByText("User id:")).toBeInTheDocument()
+  expect(screen.getByRole("button", { name: "Logout" })).toBeInTheDocument()
 
   expect(linkElement).toBeInTheDocument()
 })
