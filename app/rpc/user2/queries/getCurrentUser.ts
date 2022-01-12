@@ -1,3 +1,3 @@
-import getCurrentUser from "app/utils/server/templates/queriesTemplates/getCurrentUser"
+import getCurrentUser from "app/utils/server/templates/getCurrentUser"
 
 export default getCurrentUser

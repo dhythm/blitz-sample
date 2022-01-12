@@ -1,4 +1,4 @@
-import getCurrentUser from "app/utils/server/templates/queriesTemplates/getCurrentUser"
+import getCurrentUser from "app/utils/server/templates/getCurrentUser"
 import { render, screen } from "test/utils"
 import Home from "./index"
 
