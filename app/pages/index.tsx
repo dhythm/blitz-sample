@@ -13,7 +13,6 @@ import { Suspense } from "react"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
-  const currentUser2 = useCurrentUser2()
   const [logoutMutation] = useMutation(logout)
 
   if (currentUser) {

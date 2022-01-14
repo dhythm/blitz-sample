@@ -1,4 +1,5 @@
-import getCurrentUser from "app/utils/server/templates/getCurrentUser"
+import getCurrentUser from "app/rpc/user/queries/getCurrentUser"
+import db from "db"
 import { render, screen } from "test/utils"
 import Home from "./index"
 
@@ -10,13 +11,13 @@ jest.mock("blitz", () => ({
   },
 }))
 
-// jest.mock("db", () => ({
-//   user: { findFirst: jest.fn() },
-// }))
+jest.mock("db", () => ({
+  user: { findFirst: jest.fn() },
+}))
 // const mockUserFindFirst = db.user.findFirst as jest.MockedFunction<typeof db.user.findFirst>
 // jest.mock("app/core/hooks/useCurrentUser")
 // const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
-jest.mock("app/users/queries/getCurrentUser")
+jest.mock("app/rpc/user/queries/getCurrentUser")
 const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
 
 // test.skip("renders blitz documentation link", () => {
