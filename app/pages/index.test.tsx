@@ -1,13 +1,10 @@
 import getCurrentUser from "app/users/queries/getCurrentUser"
-import { render, screen } from "test/utils"
-import Home from "./index"
+import { screen } from "test/utils"
 
-// jest.mock("app/core/hooks/useCurrentUser")
-// const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
 jest.mock("app/users/queries/getCurrentUser")
-const mockUseGetUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
+const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
 
-// test.skip("renders blitz documentation link", () => {
+
 test("renders blitz documentation link", async () => {
   // This is an example of how to ensure a specific item is in the document
   // But it's disabled by default (by test.skip) so the test doesn't fail
@@ -28,8 +25,10 @@ test("renders blitz documentation link", async () => {
     role: "user",
   })
 
+
   const { findByRole } = render(<Home />)
 
   const logoutButton = await findByRole("button", { name: "Logout" })
+
   expect(logoutButton).toBeInTheDocument()
 })
