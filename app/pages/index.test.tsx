@@ -1,9 +1,9 @@
 import getCurrentUser from "app/users/queries/getCurrentUser"
-import { screen } from "test/utils"
+import { render } from "test/utils"
+import Home from "."
 
 jest.mock("app/users/queries/getCurrentUser")
 const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
-
 
 test("renders blitz documentation link", async () => {
   // This is an example of how to ensure a specific item is in the document
@@ -18,13 +18,12 @@ test("renders blitz documentation link", async () => {
   //   role: "user",
   // })
 
-  mockUseGetUser.mockResolvedValue({
+  mockGetCurrentUser.mockResolvedValue({
     id: 1,
     name: "User",
     email: "user@email.com",
     role: "user",
   })
-
 
   const { findByRole } = render(<Home />)
 
