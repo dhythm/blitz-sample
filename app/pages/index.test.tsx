@@ -8,7 +8,7 @@ jest.mock("app/users/queries/getCurrentUser")
 const mockUseGetUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
 
 // test.skip("renders blitz documentation link", () => {
-test("renders blitz documentation link", () => {
+test("renders blitz documentation link", async () => {
   // This is an example of how to ensure a specific item is in the document
   // But it's disabled by default (by test.skip) so the test doesn't fail
   // when you remove the the default content from the page
@@ -20,17 +20,16 @@ test("renders blitz documentation link", () => {
   //   email: "user@email.com",
   //   role: "user",
   // })
-  mockUseGetUser.mockRejectedValue({
+
+  mockUseGetUser.mockResolvedValue({
     id: 1,
     name: "User",
     email: "user@email.com",
     role: "user",
   })
 
-  const { getByText } = render(<Home />)
+  const { findByRole } = render(<Home />)
 
-  const linkElement = getByText(/Documentation/i)
-  expect(screen.getByRole("button", { name: "Logout" })).toBeInTheDocument()
-
-  expect(linkElement).toBeInTheDocument()
+  const logoutButton = await findByRole("button", { name: "Logout" })
+  expect(logoutButton).toBeInTheDocument()
 })
