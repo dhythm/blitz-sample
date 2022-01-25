@@ -1,5 +1,5 @@
 import logout from "app/auth/mutations/logout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser copy"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { useUsers } from "app/core/hooks/useUsers"
 import Layout from "app/core/layouts/Layout"
 import { BlitzPage, Link, Routes, useMutation } from "blitz"
@@ -16,7 +16,6 @@ const UserInfo = () => {
   // const [currentUser] = useQuery(getCurrentUser, null)
   // const [users] = useQuery(getUsers, null)
   const [logoutMutation] = useMutation(logout)
-  console.log({ currentUser, users })
 
   if (currentUser) {
     return (
