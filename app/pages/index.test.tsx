@@ -1,9 +1,13 @@
 import getCurrentUser from "app/users/queries/getCurrentUser"
+import getUsers from "app/users/queries/getUsers"
 import { render } from "test/utils"
 import Home from "."
 
 jest.mock("app/users/queries/getCurrentUser")
 const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
+
+jest.mock("app/users/queries/getUsers")
+const mockGetUsers = getUsers as jest.MockedFunction<typeof getUsers>
 
 test("renders blitz documentation link", async () => {
   // This is an example of how to ensure a specific item is in the document
@@ -24,6 +28,20 @@ test("renders blitz documentation link", async () => {
     email: "user@email.com",
     role: "user",
   })
+  mockGetUsers.mockResolvedValue([
+    {
+      id: 1,
+      name: "User",
+      email: "user@email.com",
+      role: "user",
+    },
+    {
+      id: 2,
+      name: "User2",
+      email: "user2@email.com",
+      role: "user2",
+    },
+  ])
 
   const { findByRole } = render(<Home />)
 

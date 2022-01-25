@@ -1,8 +1,8 @@
 import logout from "app/auth/mutations/logout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser copy"
+import { useUsers } from "app/core/hooks/useUsers"
 import Layout from "app/core/layouts/Layout"
-import { BlitzPage, Image, Link, Routes, useMutation } from "blitz"
-import logo from "public/logo.png"
+import { BlitzPage, Link, Routes, useMutation } from "blitz"
 import { Suspense } from "react"
 
 /*
@@ -12,7 +12,11 @@ import { Suspense } from "react"
 
 const UserInfo = () => {
   const currentUser = useCurrentUser()
+  const users = useUsers()
+  // const [currentUser] = useQuery(getCurrentUser, null)
+  // const [users] = useQuery(getUsers, null)
   const [logoutMutation] = useMutation(logout)
+  console.log({ currentUser, users })
 
   if (currentUser) {
     return (
