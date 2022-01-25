@@ -1,7 +1,11 @@
+// import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import getCurrentUser from "app/users/queries/getCurrentUser"
 import getUsers from "app/users/queries/getUsers"
 import { render } from "test/utils"
 import Home from "."
+
+// jest.mock("app/core/hooks/useCurrentUser")
+// const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
 
 jest.mock("app/users/queries/getCurrentUser")
 const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
