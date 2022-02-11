@@ -8,6 +8,7 @@
     "studio": "blitz prisma studio",
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
+    "test:pages": "npm run test -- --config='jest-pages.config.ts' app/pages",
     "test:watch": "jest --watch",
     "prepare": "husky install"
   },

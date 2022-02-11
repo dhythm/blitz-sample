@@ -10,7 +10,8 @@ const config: Config.InitialOptions = {
       lines: 100,
     },
   },
-  coverageDirectory: "coverage/all",
+  collectCoverageFrom: ["<rootDir>/app/pages/**/*.{ts,tsx}"],
+  coverageDirectory: "coverage/pages",
 }
 
 export default config
