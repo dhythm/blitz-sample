@@ -9,6 +9,8 @@
     "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
     "test": "jest",
     "test:pages": "npm run test -- --config='jest-pages.config.ts' app/pages",
+    "test:memory": "node --expose-gc --trace-warnings ./node_modules/jest/bin/jest.js --runInBand --logHeapUsage --silent --no-cache",
+    "test:debug": "node --inspect-brk --expose-gc ./node_modules/jest/bin/jest.js --runInBand --logHeapUsage",
     "test:watch": "jest --watch",
     "prepare": "husky install"
   },

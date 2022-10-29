@@ -7,10 +7,20 @@ import Home from "."
 // jest.mock("app/core/hooks/useCurrentUser")
 // const mockUseCurrentUser = useCurrentUser as jest.MockedFunction<typeof useCurrentUser>
 
-jest.mock("app/users/queries/getCurrentUser")
+jest.mock("app/users/queries/getCurrentUser", () => {
+  const resolver = jest.fn() as any
+  resolver._resolverType = "query"
+  resolver._routePath = "app/users/queries/getCurrentUser"
+  return resolver
+})
 const mockGetCurrentUser = getCurrentUser as jest.MockedFunction<typeof getCurrentUser>
 
-jest.mock("app/users/queries/getUsers")
+jest.mock("app/users/queries/getUsers", () => {
+  const resolver = jest.fn() as any
+  resolver._resolverType = "query"
+  resolver._routePath = "app/users/queries/getUsers"
+  return resolver
+})
 const mockGetUsers = getUsers as jest.MockedFunction<typeof getUsers>
 
 test("renders blitz documentation link", async () => {
